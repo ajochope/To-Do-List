@@ -66,7 +66,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         // look for user Delete action 
         if (editingStyle == UITableViewCellEditingStyle.Delete){
             toDoList.removeAtIndex(indexPath.row)
-            storeToDoList()
+            deleteToDoList(indexPath.row)
             tasksTable.reloadData()
         }
     
@@ -79,6 +79,11 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         NSUserDefaults.standardUserDefaults().synchronize()
         
     }
-    
+    private func deleteToDoList(index:Int){
+        // Basic persistance for the list items
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("\(index)")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+    }
 }
 
